@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
+      rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+   </head>
+<body>
+
+        <div class="container">
+            <aside>
+                <div class="top">
+                    <div class ="logo">
+                        <img src="assets/logo.png">
+                        <h2>ECMS</h2>
+                    </div>
+                    <div class="close" id="close-btn">
+                        <span class="material-icons-sharp">close</span>
+                    </div>
+                </div>
+
+                <div class ="sidebar">
+                    <a href="index.html" class="btn-dashboard">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="center.html" class = "btn-center">
+                        <span class="material-icons-sharp">apartment</span>
+                        <h3>Center</h3>
+                    </a>
+                    <a href="#" class="btn-evacuees active">
+                        <span class="material-icons-sharp">group</span>
+                        <h3>Evacuees</h3>
+                    </a>
+                    <a href="inventory.html" class="btn-inventory">
+                        <span class="material-icons-sharp">inventory</span>
+                        <h3>Inventory</h3>
+                    </a>
+                    <a href="#" class="btn-settings">
+                        <span class="material-icons-sharp">settings</span>
+                        <h3>Settings</h3>
+                    </a>
+
+                    <a href="#" class="btn-logout">
+                        <span class="material-icons-sharp">logout</span>
+                        <h3>Logout</h3>
+                    </a>
+                </div>
+            </aside>
+            <!===================== END OF ASIDE =======================!>
+
+            <main>
+
+                <h1>Evacuee Manager</h1>
+                <div class="add-evacuees">
+                    <h2>Add Evacuees</h2>
+                    <div class="add-evacuees-form">
+                        <div class="add-evacuees-row-1">
+                            <div class="firstname">
+                            <input type="text" name="name" class="text-box" placeholder="Enter First Name">
+                            <h3 class="text-muted">First Name</h3>
+                            </div>
+
+                            <div class="middlename">
+                            <input type="text" name="name" class="text-box" placeholder="Enter Middle Name">
+                            <h3 class="text-muted">Middle Name</h3>
+                            </div>
+
+                            <div class="lastname">
+                            <input type="text" name="name" class="text-box" placeholder="Enter Last Name">
+                            <h3 class="text-muted">Last Name</h3>
+                            </div>
+                        </div>
+                        <div class="add-evacuees-row-2">
+                            <div>
+                            <input type="number" name="age" class="text-box" placeholder="Enter Age">
+                            <h3 class="text-muted">Age</h3>
+                            </div>
+                            <div>
+                            <input type="date" name="birthday" class="text-box">
+                            <h3 class="text-muted">Birthday</h3>
+                            </div>
+                            
+                            <div>
+                            <input type="text" name="sex" class="text-box" placeholder="Enter Sex">
+                            <h3 class="text-muted">Sex</h3>
+                            </div>
+                            <div>
+                            <input type="text" name="contact" class="text-box" placeholder="Enter Contact">
+                            <h3 class="text-muted">Contact No</h3>
+                            </div>
+                        </div>
+                        <div class="add-evacuees-row-3">
+                            <div class="txt-address">
+                            <input type="text" name="address" class="text-box" placeholder="Enter Address">
+                            <h3 class="text-muted">Address</h3>
+                            </div>
+                            <div class="household-field">
+                            <datalist id="suggestions" >
+                                <option>Santiago, Jose</option>
+                                <option>Cristo, Jay</option>
+                                <option>Cruz, Samson</option>
+                                <option>Jolo, Joseph</option>
+                                <option>Tan, Gene</option>
+                            </datalist>
+                            <input  autoComplete="on" list="suggestions" class="txt-household"/> 
+                            <h3 class="text-muted">Household</h3>
+                            </div>
+                            <button>Submit</button>
+                            <button>Clear</button>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="recent-updates">
+                    <h2>Information</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Age</th>
+                                <th>Sex</th>
+                                <th>Room</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Samson, Anne Marie</td>
+                                <td>San Roque</td>
+                                <td>23</td>
+                                <td>Female</td>
+                                <td>Room 16</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Lee, John Mike</td>
+                                <td>Village East</td>
+                                <td>27</td>
+                                <td>Male</td>
+                                <td>Room 10</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Collins, Adon</td>
+                                <td>San Fidel</td>
+                                <td>17</td>
+                                <td>Male</td>
+                                <td>Room 7</td>
+                                <td>Departed</td>
+                            </tr>
+                            <tr>
+                                <td>Santos, Desirie</td>
+                                <td>Santolan</td>
+                                <td>37</td>
+                                <td>Female</td>
+                                <td>Room 21</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Santiago, Janna</td>
+                                <td>Pinagbuhatan</td>
+                                <td>25</td>
+                                <td>Female</td>
+                                <td>Room 15</td>
+                                <td>Evacuated</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#">Show All</a>
+                </div>
+            </main>
+            <!  ------------------- END OF MAIN -----------------------  !>
+
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class= "material-icons-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class= "material-icons-sharp active">light_mode</span>
+                        <span class= "material-icons-sharp">dark_mode</span>
+                    </div>
+                    <div class="profile">
+                        <div class="info">
+                            <p>Hey, <b>Daniel</b></p>
+                            <small class="text-muted">Admin</small>
+                        </div>
+                        <div class="profile-photo">
+                            <img src="assets/profile-1.jpg">
+                        </div>
+                    </div>
+
+                </div>
+                <! ---------------- End of Top ---------------- !>
+                <div class="recent-announcements">
+                    <h2>Announcements</h2>
+                    <div class="announcements">
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 3 in Metro Manila and surrounding regions.</p>
+                                <small class="text-muted">4 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 4 in North Luzon and Central Luzon regions.</p>
+                                <small class="text-muted">6 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 2 in South Luzon and Northern Visayas regions.</p>
+                                <small class="text-muted">11 Minutes Ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <! ---------------- End of Announcements ---------------- !>
+                    <div class="evac-analytics">
+                        <h2>Analytics</h2>
+                        <div class="evacuee analysis">
+                            <div class="icon">
+                                <span class= "material-icons-sharp">groups</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>EVACUEES</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="success">+26%</h5>
+                                <h3>854</h3>
+                            </div>
+                        </div>
+
+                        <div class="volunteer analysis">
+                            <div class="icon">
+                                <span class="material-icons-sharp">volunteer_activism</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>VOLUNTEERS</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="danger">-15%</h5>
+                                <h3>23</h3>
+                            </div>
+                        </div>
+
+                        <div class="inventory analysis">
+                            <div class="icon">
+                                <span class= "material-icons-sharp">set_meal</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>RELIEF GOODS</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="warning">+0.7%</h5>
+                                <h3>1,523</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+        </div>
+
+        
+
+        <script>
+        const sideMenu = document.querySelector("aside");
+        const menuBtn = document.querySelector("#menu-btn");
+        const closeBtn = document.querySelector("#close-btn");
+        const themeToggler = document.querySelector(".theme-toggler");
+
+
+        // open sidebar
+        menuBtn.addEventListener('click', () =>{
+            sideMenu.style.display = 'block';
+        })
+
+        // close sidebar
+        closeBtn.addEventListener('click', () =>{
+            sideMenu.style.display = 'none';
+        })
+
+        // change theme
+        themeToggler.addEventListener('click', () =>{
+            document.body.classList.toggle('dark-theme-variables');
+
+            themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
+            themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+        })
+
+        // fill table
+        /* Updates.forEach(update =>{
+            const tr = document.createElement('tr');
+            const trContent = ' <td>${update.Name}</td><td>${update.Address}</td><td>${update.Age}</td><td>${update.Sex}</td><td>${update.Room}</td><td class="${update.Status === 'Evacuated' ? 'success' : update.Status === 'Departed' ? 'danger' : 'primary'}">${update.Status}</td>';
+
+            tr.innerHTML = trContent;
+            document.querySelector('table tbody').appendChild(tr);
+        }) */
+   </script>
+   
+</body>
+</html>

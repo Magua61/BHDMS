@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
+      rel="stylesheet">
+   <link rel="stylesheet" href="style.css">
+   </head>
+<body>
+
+        <div class="container">
+            <aside>
+                <div class="top">
+                    <div class ="logo">
+                        <img src="assets/logo.png">
+                        <h2>ECMS</h2>
+                    </div>
+                    <div class="close" id="close-btn">
+                        <span class="material-icons-sharp">close</span>
+                    </div>
+                </div>
+
+                <div class ="sidebar">
+                    <a href="index.html" class="btn-dashboard">
+                        <span class="material-icons-sharp">grid_view</span>
+                        <h3>Dashboard</h3>
+                    </a>
+                    <a href="center.html" class = "btn-center">
+                        <span class="material-icons-sharp">apartment</span>
+                        <h3>Center</h3>
+                    </a>
+                    <a href="evacuees.html" class="btn-evacuees">
+                        <span class="material-icons-sharp">group</span>
+                        <h3>Evacuees</h3>
+                    </a>
+                    <a href="#" class="btn-inventory active">
+                        <span class="material-icons-sharp">inventory</span>
+                        <h3>Inventory</h3>
+                    </a>
+                    <a href="#" class="btn-settings">
+                        <span class="material-icons-sharp">settings</span>
+                        <h3>Settings</h3>
+                    </a>
+
+                    <a href="#" class="btn-logout">
+                        <span class="material-icons-sharp">logout</span>
+                        <h3>Logout</h3>
+                    </a>
+                </div>
+            </aside>
+            <!===================== END OF ASIDE =======================!>
+
+            <main>
+                <h1>Dashboard</h1>
+                <div class="date">
+                    <script>
+                    date = new Date().toLocaleDateString();
+                    document.write(date);
+                    </script>
+                </div>
+                <div class="insights">
+                    <!====================== CAPACITY ====================!>
+                    <div class="cap">
+                        <span class= "material-icons-sharp">night_shelter</span>
+                        <div class="middle">
+                            <div class="left">
+                                 <h3>Total Capacity</h3>
+                                <h1>854</h1>
+                            </div>
+                             <div class="progress">
+                                 <svg>
+                                     <circle cx='40' cy="50" r="36"/>
+                                </svg>
+                                 <div class="number">
+                                    <p>81%</p>
+                                 </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                    <!====================== EVACUEES ====================!>
+
+                    <div class="evacuees">
+                        <span class= "material-icons-sharp">family_restroom</span>
+                        <div class="middle">
+                            <div class="left">
+                                 <h3>Number of Families</h3>
+                                <h1>32</h1>
+                            </div>
+                             <div class="progress">
+                                 <svg>
+                                     <circle cx='40' cy="50" r="36"/>
+                                </svg>
+                                 <div class="number">
+                                    <p>81%</p>
+                                 </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                    <!====================== RELIEF ====================!>
+                    <div class="inventory">
+                        <span class= "material-icons-sharp">food_bank</span>
+                        <div class="middle">
+                            <div class="left">
+                                 <h3>Relief Packs</h3>
+                                <h1>1,523</h1>
+                            </div>
+                             <div class="progress">
+                                 <svg>
+                                     <circle cx='40' cy="50" r="36"/>
+                                </svg>
+                                 <div class="number">
+                                    <p>65%</p>
+                                 </div>
+                            </div>
+                        </div>
+                        <small class="text-muted">Last 24 Hours</small>
+                    </div>
+                    <!====================== CAPACITY ====================!>
+                </div>
+
+                <div class="recent-updates">
+                    <h2>Recent Updates</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Address</th>
+                                <th>Age</th>
+                                <th>Sex</th>
+                                <th>Room</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Samson, Anne Marie</td>
+                                <td>San Roque</td>
+                                <td>23</td>
+                                <td>Female</td>
+                                <td>Room 16</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Lee, John Mike</td>
+                                <td>Village East</td>
+                                <td>27</td>
+                                <td>Male</td>
+                                <td>Room 10</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Collins, Adon</td>
+                                <td>San Fidel</td>
+                                <td>17</td>
+                                <td>Male</td>
+                                <td>Room 7</td>
+                                <td>Departed</td>
+                            </tr>
+                            <tr>
+                                <td>Santos, Desirie</td>
+                                <td>Santolan</td>
+                                <td>37</td>
+                                <td>Female</td>
+                                <td>Room 21</td>
+                                <td>Evacuated</td>
+                            </tr>
+                            <tr>
+                                <td>Santiago, Janna</td>
+                                <td>Pinagbuhatan</td>
+                                <td>25</td>
+                                <td>Female</td>
+                                <td>Room 15</td>
+                                <td>Evacuated</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <a href="#">Show All</a>
+                </div>
+            </main>
+            <!  ------------------- END OF MAIN -----------------------  !>
+
+            <div class="right">
+                <div class="top">
+                    <button id="menu-btn">
+                        <span class= "material-icons-sharp">menu</span>
+                    </button>
+                    <div class="theme-toggler">
+                        <span class= "material-icons-sharp active">light_mode</span>
+                        <span class= "material-icons-sharp">dark_mode</span>
+                    </div>
+                    <div class="profile">
+                        <div class="info">
+                            <p>Hey, <b>Daniel</b></p>
+                            <small class="text-muted">Admin</small>
+                        </div>
+                        <div class="profile-photo">
+                            <img src="assets/profile-1.jpg">
+                        </div>
+                    </div>
+
+                </div>
+                <! ---------------- End of Top ---------------- !>
+                <div class="recent-announcements">
+                    <h2>Announcements</h2>
+                    <div class="announcements">
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 3 in Metro Manila and surrounding regions.</p>
+                                <small class="text-muted">4 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 4 in North Luzon and Central Luzon regions.</p>
+                                <small class="text-muted">6 Minutes Ago</small>
+                            </div>
+                        </div>
+
+                        <div class="announcement">
+                            <div class="profile-photo">
+                                <img src="assets/profile-2.jpg">
+                            </div>
+                            <div class="message">
+                                <p><b>NDRRMC</b> Alert Level 2 in South Luzon and Northern Visayas regions.</p>
+                                <small class="text-muted">11 Minutes Ago</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <! ---------------- End of Announcements ---------------- !>
+                    <div class="evac-analytics">
+                        <h2>Analytics</h2>
+                        <div class="evacuee analysis">
+                            <div class="icon">
+                                <span class= "material-icons-sharp">groups</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>EVACUEES</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="success">+26%</h5>
+                                <h3>854</h3>
+                            </div>
+                        </div>
+
+                        <div class="volunteer analysis">
+                            <div class="icon">
+                                <span class="material-icons-sharp">volunteer_activism</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>VOLUNTEERS</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="danger">-15%</h5>
+                                <h3>23</h3>
+                            </div>
+                        </div>
+
+                        <div class="inventory analysis">
+                            <div class="icon">
+                                <span class= "material-icons-sharp">set_meal</span>
+                            </div>
+                            <div class="right">
+                                <div class="info">
+                                    <h3>RELIEF GOODS</h3>
+                                    <small class="text-muted">Last 24 Hours</small>
+                                </div>
+                                <h5 class="warning">+0.7%</h5>
+                                <h3>1,523</h3>
+                            </div>
+                        </div>
+
+                    </div>
+
+            </div>
+        </div>
+
+        
+
+        <script>
+        const sideMenu = document.querySelector("aside");
+        const menuBtn = document.querySelector("#menu-btn");
+        const closeBtn = document.querySelector("#close-btn");
+        const themeToggler = document.querySelector(".theme-toggler");
+
+
+        // open sidebar
+        menuBtn.addEventListener('click', () =>{
+            sideMenu.style.display = 'block';
+        })
+
+        // close sidebar
+        closeBtn.addEventListener('click', () =>{
+            sideMenu.style.display = 'none';
+        })
+
+        // change theme
+        themeToggler.addEventListener('click', () =>{
+            document.body.classList.toggle('dark-theme-variables');
+
+            themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
+            themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
+        })
+
+        // fill table
+        /* Updates.forEach(update =>{
+            const tr = document.createElement('tr');
+            const trContent = ' <td>${update.Name}</td><td>${update.Address}</td><td>${update.Age}</td><td>${update.Sex}</td><td>${update.Room}</td><td class="${update.Status === 'Evacuated' ? 'success' : update.Status === 'Departed' ? 'danger' : 'primary'}">${update.Status}</td>';
+
+            tr.innerHTML = trContent;
+            document.querySelector('table tbody').appendChild(tr);
+        }) */
+   </script>
+   
+</body>
+</html>
