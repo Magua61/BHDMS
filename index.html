@@ -3,6 +3,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
       rel="stylesheet">
    <link rel="stylesheet" href="style.css">
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
    </head>
 <body>
 
@@ -11,7 +12,7 @@
                 <div class="top">
                     <div class ="logo">
                         <img src="assets/logo.png">
-                        <h2>ECMS</h2>
+                        <h2>ABHDS</h2>
                     </div>
                     <div class="close" id="close-btn">
                         <span class="material-icons-sharp">close</span>
@@ -23,27 +24,15 @@
                         <span class="material-icons-sharp">grid_view</span>
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="center.html" class = "btn-center">
-                        <span class="material-icons-sharp">apartment</span>
-                        <h3>Center</h3>
+                    <a href="evacuees.html" class="btn-evacuees">
+                        <span class="material-icons-sharp">medical_information</span>
+                        <h3>Health Form</h3>
                     </a>
                     <a href="evacuees.html" class="btn-evacuees">
-                        <span class="material-icons-sharp">group</span>
-                        <h3>Evacuees</h3>
-                    </a>
-                    <a href="inventory.html" class="btn-inventory">
-                        <span class="material-icons-sharp">inventory</span>
-                        <h3>Inventory</h3>
-                    </a>
-                    <a href="#" class="btn-settings">
-                        <span class="material-icons-sharp">settings</span>
-                        <h3>Settings</h3>
+                        <span class="material-icons-sharp">family_restroom</span>
+                        <h3>Health Search</h3>
                     </a>
 
-                    <a href="#" class="btn-logout">
-                        <span class="material-icons-sharp">logout</span>
-                        <h3>Logout</h3>
-                    </a>
                 </div>
             </aside>
             <!===================== END OF ASIDE =======================!>
@@ -57,124 +46,64 @@
                     </script>
                 </div>
                 <div class="insights">
-                    <!====================== CAPACITY ====================!>
+                    <!====================== Residents ====================!>
                     <div class="cap">
-                        <span class= "material-icons-sharp">night_shelter</span>
+                        <span class= "material-icons-sharp">vaccines</span>
+                        <div class="combo-box">
+                            <select name="vaccines" id="vaccines">
+                                <option value="measles">Measles</option>
+                              <option value="covid">Covid-19</option>
+                              <option value="rabies">Rabies</option>
+                              <option value="tetanus">Tetanus</option>
+                            </select>
+                        </div>
                         <div class="middle">
                             <div class="left">
-                                 <h3>Total Capacity</h3>
-                                <h1>854</h1>
-                            </div>
-                             <div class="progress">
-                                 <svg>
-                                     <circle cx='40' cy="50" r="36"/>
-                                </svg>
-                                 <div class="number">
-                                    <p>81%</p>
-                                 </div>
+                                 <h3>Vaccination Rate</h3>
+                                <h1>Total Population: 854</h1>
                             </div>
                         </div>
-                        <small class="text-muted">Last 24 Hours</small>
+                        <div id="pie-chart"></div>
                     </div>
                     <!====================== EVACUEES ====================!>
 
                     <div class="evacuees">
-                        <span class= "material-icons-sharp">family_restroom</span>
+                        <span class= "material-icons-sharp">trending_up</span>
+                        <div class="combo-box">
+                            <select name="year" id="year">
+                                <option value="2024">2024</option>
+                              <option value="2023">2023</option>
+                              <option value="2022">2022</option>
+                              <option value="2021">2021</option>
+                            </select>
+                        </div>
                         <div class="middle">
                             <div class="left">
-                                 <h3>Number of Families</h3>
-                                <h1>32</h1>
-                            </div>
-                             <div class="progress">
-                                 <svg>
-                                     <circle cx='40' cy="50" r="36"/>
-                                </svg>
-                                 <div class="number">
-                                    <p>81%</p>
-                                 </div>
+                                 <h3>Disease Prevalence Trend</h3>
                             </div>
                         </div>
-                        <small class="text-muted">Last 24 Hours</small>
+                        <div id="line-chart"></div>
                     </div>
                     <!====================== RELIEF ====================!>
                     <div class="inventory">
-                        <span class= "material-icons-sharp">food_bank</span>
+                        <span class= "material-icons-sharp">coronavirus</span>
+                        <div class="combo-box">
+                            <select name="disease-sort" id="disease-sort">
+                                <option value="age">Age</option>
+                              <option value="income">Income</option>
+                              <option value="ethnicity">Ethnicity</option>
+                              <option value="education">Education</option>
+                            </select>
+                        </div>
                         <div class="middle">
                             <div class="left">
-                                 <h3>Relief Packs</h3>
+                                 <h3>Most Common Disease</h3>
                                 <h1>1,523</h1>
                             </div>
-                             <div class="progress">
-                                 <svg>
-                                     <circle cx='40' cy="50" r="36"/>
-                                </svg>
-                                 <div class="number">
-                                    <p>65%</p>
-                                 </div>
-                            </div>
                         </div>
-                        <small class="text-muted">Last 24 Hours</small>
+                        <div id="bar-chart"></div>
                     </div>
                     <!====================== CAPACITY ====================!>
-                </div>
-
-                <div class="recent-updates">
-                    <h2>Recent Updates</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Age</th>
-                                <th>Sex</th>
-                                <th>Room</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Samson, Anne Marie</td>
-                                <td>San Roque</td>
-                                <td>23</td>
-                                <td>Female</td>
-                                <td>Room 16</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Lee, John Mike</td>
-                                <td>Village East</td>
-                                <td>27</td>
-                                <td>Male</td>
-                                <td>Room 10</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Collins, Adon</td>
-                                <td>San Fidel</td>
-                                <td>17</td>
-                                <td>Male</td>
-                                <td>Room 7</td>
-                                <td>Departed</td>
-                            </tr>
-                            <tr>
-                                <td>Santos, Desirie</td>
-                                <td>Santolan</td>
-                                <td>37</td>
-                                <td>Female</td>
-                                <td>Room 21</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Santiago, Janna</td>
-                                <td>Pinagbuhatan</td>
-                                <td>25</td>
-                                <td>Female</td>
-                                <td>Room 15</td>
-                                <td>Evacuated</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <a href="#">Show All</a>
                 </div>
             </main>
             <!  ------------------- END OF MAIN -----------------------  !>
@@ -200,41 +129,7 @@
 
                 </div>
                 <! ---------------- End of Top ---------------- !>
-                <div class="recent-announcements">
-                    <h2>Announcements</h2>
-                    <div class="announcements">
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 3 in Metro Manila and surrounding regions.</p>
-                                <small class="text-muted">4 Minutes Ago</small>
-                            </div>
-                        </div>
 
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 4 in North Luzon and Central Luzon regions.</p>
-                                <small class="text-muted">6 Minutes Ago</small>
-                            </div>
-                        </div>
-
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 2 in South Luzon and Northern Visayas regions.</p>
-                                <small class="text-muted">11 Minutes Ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <! ---------------- End of Announcements ---------------- !>
                     <div class="evac-analytics">
                         <h2>Analytics</h2>
                         <div class="evacuee analysis">
@@ -243,7 +138,7 @@
                             </div>
                             <div class="right">
                                 <div class="info">
-                                    <h3>EVACUEES</h3>
+                                    <h3>Residents</h3>
                                     <small class="text-muted">Last 24 Hours</small>
                                 </div>
                                 <h5 class="success">+26%</h5>
@@ -253,11 +148,11 @@
 
                         <div class="volunteer analysis">
                             <div class="icon">
-                                <span class="material-icons-sharp">volunteer_activism</span>
+                                <span class="material-icons-sharp">diversity_3</span>
                             </div>
                             <div class="right">
                                 <div class="info">
-                                    <h3>VOLUNTEERS</h3>
+                                    <h3>Families</h3>
                                     <small class="text-muted">Last 24 Hours</small>
                                 </div>
                                 <h5 class="danger">-15%</h5>
@@ -265,61 +160,13 @@
                             </div>
                         </div>
 
-                        <div class="inventory analysis">
-                            <div class="icon">
-                                <span class= "material-icons-sharp">set_meal</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>RELIEF GOODS</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="warning">+0.7%</h5>
-                                <h3>1,523</h3>
-                            </div>
-                        </div>
 
                     </div>
 
             </div>
         </div>
 
-        
-
-        <script>
-        const sideMenu = document.querySelector("aside");
-        const menuBtn = document.querySelector("#menu-btn");
-        const closeBtn = document.querySelector("#close-btn");
-        const themeToggler = document.querySelector(".theme-toggler");
-
-
-        // open sidebar
-        menuBtn.addEventListener('click', () =>{
-            sideMenu.style.display = 'block';
-        })
-
-        // close sidebar
-        closeBtn.addEventListener('click', () =>{
-            sideMenu.style.display = 'none';
-        })
-
-        // change theme
-        themeToggler.addEventListener('click', () =>{
-            document.body.classList.toggle('dark-theme-variables');
-
-            themeToggler.querySelector('span:nth-child(1)').classList.toggle('active');
-            themeToggler.querySelector('span:nth-child(2)').classList.toggle('active');
-        })
-
-        // fill table
-        /* Updates.forEach(update =>{
-            const tr = document.createElement('tr');
-            const trContent = ' <td>${update.Name}</td><td>${update.Address}</td><td>${update.Age}</td><td>${update.Sex}</td><td>${update.Room}</td><td class="${update.Status === 'Evacuated' ? 'success' : update.Status === 'Departed' ? 'danger' : 'primary'}">${update.Status}</td>';
-
-            tr.innerHTML = trContent;
-            document.querySelector('table tbody').appendChild(tr);
-        }) */
-   </script>
-   
+        <script src="chart.js"></script>
+        <script src="default.js"></script>
 </body>
 </html>

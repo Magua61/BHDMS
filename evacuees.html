@@ -11,7 +11,7 @@
                 <div class="top">
                     <div class ="logo">
                         <img src="assets/logo.png">
-                        <h2>ECMS</h2>
+                        <h2>ABHDS</h2>
                     </div>
                     <div class="close" id="close-btn">
                         <span class="material-icons-sharp">close</span>
@@ -23,26 +23,13 @@
                         <span class="material-icons-sharp">grid_view</span>
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="center.html" class = "btn-center">
-                        <span class="material-icons-sharp">apartment</span>
-                        <h3>Center</h3>
+                    <a href="evacuees.html" class="btn-evacuees">
+                        <span class="material-icons-sharp">medical_information</span>
+                        <h3>Health Form</h3>
                     </a>
                     <a href="#" class="btn-evacuees active">
-                        <span class="material-icons-sharp">group</span>
-                        <h3>Evacuees</h3>
-                    </a>
-                    <a href="inventory.html" class="btn-inventory">
-                        <span class="material-icons-sharp">inventory</span>
-                        <h3>Inventory</h3>
-                    </a>
-                    <a href="#" class="btn-settings">
-                        <span class="material-icons-sharp">settings</span>
-                        <h3>Settings</h3>
-                    </a>
-
-                    <a href="#" class="btn-logout">
-                        <span class="material-icons-sharp">logout</span>
-                        <h3>Logout</h3>
+                        <span class="material-icons-sharp">family_restroom</span>
+                        <h3>Health Search</h3>
                     </a>
                 </div>
             </aside>
@@ -50,124 +37,47 @@
 
             <main>
 
-                <h1>Evacuee Manager</h1>
-                <div class="add-evacuees">
-                    <h2>Add Evacuees</h2>
-                    <div class="add-evacuees-form">
-                        <div class="add-evacuees-row-1">
-                            <div class="firstname">
-                            <input type="text" name="name" class="text-box" placeholder="Enter First Name">
-                            <h3 class="text-muted">First Name</h3>
-                            </div>
-
-                            <div class="middlename">
-                            <input type="text" name="name" class="text-box" placeholder="Enter Middle Name">
-                            <h3 class="text-muted">Middle Name</h3>
-                            </div>
-
-                            <div class="lastname">
-                            <input type="text" name="name" class="text-box" placeholder="Enter Last Name">
-                            <h3 class="text-muted">Last Name</h3>
-                            </div>
-                        </div>
-                        <div class="add-evacuees-row-2">
-                            <div>
-                            <input type="number" name="age" class="text-box" placeholder="Enter Age">
-                            <h3 class="text-muted">Age</h3>
-                            </div>
-                            <div>
-                            <input type="date" name="birthday" class="text-box">
-                            <h3 class="text-muted">Birthday</h3>
-                            </div>
-                            
-                            <div>
-                            <input type="text" name="sex" class="text-box" placeholder="Enter Sex">
-                            <h3 class="text-muted">Sex</h3>
-                            </div>
-                            <div>
-                            <input type="text" name="contact" class="text-box" placeholder="Enter Contact">
-                            <h3 class="text-muted">Contact No</h3>
-                            </div>
-                        </div>
-                        <div class="add-evacuees-row-3">
-                            <div class="txt-address">
-                            <input type="text" name="address" class="text-box" placeholder="Enter Address">
-                            <h3 class="text-muted">Address</h3>
-                            </div>
-                            <div class="household-field">
-                            <datalist id="suggestions" >
-                                <option>Santiago, Jose</option>
-                                <option>Cristo, Jay</option>
-                                <option>Cruz, Samson</option>
-                                <option>Jolo, Joseph</option>
-                                <option>Tan, Gene</option>
+                <h1>Health Search</h1>
+                
+                <div class="health-profile-card">
+                    <div class="search-bar">
+                        <div class="search-box">
+                            <input list="person-names" id="person-search" placeholder="Search person...">
+                            <datalist id="person-names">
+                                <option value="Alfred Panfilo Valencia"></option>
+                                <option value="Miguel Antonio Besa"></option>
+                                <option value="Genebryan Coralde"></option>
+                                <option value="Domingo Cristo"></option>
                             </datalist>
-                            <input  autoComplete="on" list="suggestions" class="txt-household"/> 
-                            <h3 class="text-muted">Household</h3>
-                            </div>
-                            <button>Submit</button>
-                            <button>Clear</button>
                         </div>
-
+                        <button>Search</button>
                     </div>
-                </div>
-                <div class="recent-updates">
-                    <h2>Information</h2>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Name</th>
-                                <th>Address</th>
-                                <th>Age</th>
-                                <th>Sex</th>
-                                <th>Room</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Samson, Anne Marie</td>
-                                <td>San Roque</td>
-                                <td>23</td>
-                                <td>Female</td>
-                                <td>Room 16</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Lee, John Mike</td>
-                                <td>Village East</td>
-                                <td>27</td>
-                                <td>Male</td>
-                                <td>Room 10</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Collins, Adon</td>
-                                <td>San Fidel</td>
-                                <td>17</td>
-                                <td>Male</td>
-                                <td>Room 7</td>
-                                <td>Departed</td>
-                            </tr>
-                            <tr>
-                                <td>Santos, Desirie</td>
-                                <td>Santolan</td>
-                                <td>37</td>
-                                <td>Female</td>
-                                <td>Room 21</td>
-                                <td>Evacuated</td>
-                            </tr>
-                            <tr>
-                                <td>Santiago, Janna</td>
-                                <td>Pinagbuhatan</td>
-                                <td>25</td>
-                                <td>Female</td>
-                                <td>Room 15</td>
-                                <td>Evacuated</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <a href="#">Show All</a>
+                    <div class="profile">
+                        <div class="personal-details-card">
+                            <h2>Name: <span id="name">Alfred Panfilo Valencia</span></h2>
+                            <h2>Gender: <span id="gender">Male</span></h2>
+                            <h2>Age: <span id="age">35</span></h2>
+                            <h2>Birthday: <span id="birthday">July 21, 1989</span></h2>
+                            <h2>Address: <span id="address">San Isidro, Pasig City</span></h2>
+                            <h2>Phone Number: <span id="phone-number">0917-123-123</span></h2>
+                            <h2>Email Address: <span id="email">alfred@gmail.com</span></h2>
+                            <h2>Occupation: <span id="occupation">Truck Driver</span></h2>
+                            <h2>Ethnicity: <span id="ethnicity">Tagalog</span></h2>
+                        </div>
+                        <div class="medical-details-card">
+                            <h2>Medical History:</h2>
+                            <p id="person-medical-history">Hypertension</p>
+                
+                            <h2>Allergies:</h2>
+                            <p id="person-allergies">None</p>
+                
+                            <h2>Medications:</h2>
+                            <p id="person-medications">Lisinopril</p>
+                
+                            <h2>Vaccination:</h2>
+                            <p id="person-vaccination">COVID-19 (2 doses), Influenza</p>
+                        </div>
+                    </div>
                 </div>
             </main>
             <!  ------------------- END OF MAIN -----------------------  !>
@@ -193,41 +103,6 @@
 
                 </div>
                 <! ---------------- End of Top ---------------- !>
-                <div class="recent-announcements">
-                    <h2>Announcements</h2>
-                    <div class="announcements">
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 3 in Metro Manila and surrounding regions.</p>
-                                <small class="text-muted">4 Minutes Ago</small>
-                            </div>
-                        </div>
-
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 4 in North Luzon and Central Luzon regions.</p>
-                                <small class="text-muted">6 Minutes Ago</small>
-                            </div>
-                        </div>
-
-                        <div class="announcement">
-                            <div class="profile-photo">
-                                <img src="assets/profile-2.jpg">
-                            </div>
-                            <div class="message">
-                                <p><b>NDRRMC</b> Alert Level 2 in South Luzon and Northern Visayas regions.</p>
-                                <small class="text-muted">11 Minutes Ago</small>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <! ---------------- End of Announcements ---------------- !>
                     <div class="evac-analytics">
                         <h2>Analytics</h2>
                         <div class="evacuee analysis">
@@ -255,20 +130,6 @@
                                 </div>
                                 <h5 class="danger">-15%</h5>
                                 <h3>23</h3>
-                            </div>
-                        </div>
-
-                        <div class="inventory analysis">
-                            <div class="icon">
-                                <span class= "material-icons-sharp">set_meal</span>
-                            </div>
-                            <div class="right">
-                                <div class="info">
-                                    <h3>RELIEF GOODS</h3>
-                                    <small class="text-muted">Last 24 Hours</small>
-                                </div>
-                                <h5 class="warning">+0.7%</h5>
-                                <h3>1,523</h3>
                             </div>
                         </div>
 
