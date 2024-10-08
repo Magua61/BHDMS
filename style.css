@@ -192,7 +192,11 @@ aside .sidebar a{
 	height: 3.7rem;
 	transition: all 300ms ease;
 }
-
+aside .sidebar a:last-child{
+    position: absolute;
+    bottom: 2rem;
+    width:100%;
+}
 aside .sidebar a span{
 	font-size: 1.6rem;
 	transition: all 300ms ease;
@@ -274,6 +278,10 @@ main .insights > div.evacuees span{
 
 main .insights > div.inventory span{
 	background: var(--color-success);
+}
+
+main .insights > div.mental span{
+	background: var(--color-warning);
 }
 
 main .insights > div .middle{
@@ -943,24 +951,27 @@ select:focus {
     outline: none;
     border-color: #4a90e2;
 }
-/*====================Health Search===================*/
-.personal-details-card{
+/*====================Health Profile===================*/
+.personal-details-card, .medical-details-card, .current-health-status-card{
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* 2 equal columns */
-    gap: 20px; /* Space between the columns */
-    margin-bottom: 20px;
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-} 
-.medical-details-card {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
     margin-bottom: 20px;
     padding: 15px;
-    background-color: #f9f9f9;
+    padding-bottom: 70px;
+    position: relative;
+}
+
+/* Editable Fields */
+.edit-field {
+    display: none;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
     border: 1px solid #ccc;
-    border-radius: 8px;
+    border-radius: 4px;
+    background-color: #fff;
+    font-family: poppins, sans-serif;
 }
 .health-profile-card {
     width: 100%;
@@ -969,10 +980,108 @@ select:focus {
     box-shadow: var(--box-shadow);
     border-radius: var(--card-border-radius);
     margin: 20px auto;
-    font-family: Arial, sans-serif;
+    font-family: poppins, sans-serif;
 }
 .health-profile-card p{
     margin: 5px 0;
     padding: 8px;
     font-size: 14px;
+}
+
+.health-profile-card .edit-btn{
+    margin-top: 10px;
+    padding: 10px 15px;
+    width: 8rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    bottom: 10px;
+    left: 1%;
+}
+/* Default styling */
+.edit-btn, #edit-medical-conditions-btn, #edit-habits-btn, #edit-vaccination-btn, 
+#edit-mental-health-history-btn , #edit-current-conditions-btn, #edit-current-mental-health-btn, #edit-allergies-btn, #edit-medications-btn{
+    padding: 10px 15px;
+    width: 100%;
+    max-width: 200px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    position: relative;
+    text-align: center;
+    margin-left: 5px;
+}
+
+/* Medical Condition Edit Section */
+#medical-condition-section {
+    margin-top: 10px;
+    width: 100%; /* Full width on smaller screens */
+}
+.add-medical-condition, .add-current-medical-condition{
+    display: inline-flex;
+}
+.add-mental-condition, .add-current-mental-condition{
+    display: inline-flex;
+}
+.add-vaccination, .add-medications, .add-allergies{
+    display: inline-flex;
+}
+#medical-condition-input, #mental-condition-input, #vaccination-input, 
+#current-medical-condition-input, #current-mental-condition-input, #allergies-input, #medications-input{
+    width: 100%; /* Make the input and button full width for small screens */
+    max-width: 400px;
+}
+
+#medical-condition-input, #mental-condition-input, #vaccination-input, 
+#current-medical-condition-input, #current-mental-condition-input, #allergies-input, #medications-input{
+    padding: 8px;
+    width: 300px;
+    margin-right: 20px;
+    border: 1px solid;
+    border-radius: var(--border-radius-1);
+}
+
+#add-condition-btn, #add-mental-btn , #add-vaccination-btn, #add-current-condition-btn, 
+#add-current-mental-btn, #add-allergies-btn, #add-medications-btn{
+    padding: 8px;
+    background-color: #6a67ce;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Table for Medical Conditions */
+#medical-condition-table {
+    margin-top: 15px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+/* Buttons in the modal */
+.modal-buttons button {
+    width: 100%; /* Full width for small screens */
+    max-width: 150px;
+    padding: 10px;
+    margin: 0 10px;
+}
+
+/* Responsive Media Query */
+@media (max-width: 768px) {
+    /* Health Profile Section */
+    .personal-details-card, .medical-details-card, .current-health-status-card {
+        grid-template-columns: 1fr; /* Full width on smaller screens */
+    }
+
+    /* Buttons */
+    .edit-btn, #edit-medical-conditions-btn, #edit-habits-btn, #edit-vaccination-btn, #edit-mental-health-history-btn{
+        width: 100%; /* Full width on smaller screens */
+    }
+
+    /* Modal styling */
+    .modal {
+        width: 90%; /* More width for small screens */
+        max-width: 90%;
+    }
 }

@@ -26,11 +26,11 @@
                     </a>
                     <a href="evacuees.html" class="btn-evacuees">
                         <span class="material-icons-sharp">medical_information</span>
-                        <h3>Health Form</h3>
+                        <h3>Health Profile</h3>
                     </a>
-                    <a href="evacuees.html" class="btn-evacuees">
-                        <span class="material-icons-sharp">family_restroom</span>
-                        <h3>Health Search</h3>
+                    <a href="#" class="btn-logout">
+                        <span class="material-icons-sharp">logout</span>
+                        <h3>Logout</h3>
                     </a>
 
                 </div>
@@ -98,12 +98,28 @@
                         <div class="middle">
                             <div class="left">
                                  <h3>Most Common Disease</h3>
-                                <h1>1,523</h1>
                             </div>
                         </div>
                         <div id="bar-chart"></div>
                     </div>
                     <!====================== CAPACITY ====================!>
+                    <div class="mental">
+                        <span class= "material-icons-sharp">psychology</span>
+                        <div class="combo-box">
+                            <select name="disease-sort" id="disease-sort">
+                                <option value="age">Age</option>
+                              <option value="income">Income</option>
+                              <option value="ethnicity">Ethnicity</option>
+                              <option value="education">Education</option>
+                            </select>
+                        </div>
+                        <div class="middle">
+                            <div class="left">
+                                 <h3>Mental Health Statistics</h3>
+                            </div>
+                        </div>
+                        <div id="mental-bar-chart"></div>
+                    </div>
                 </div>
             </main>
             <!  ------------------- END OF MAIN -----------------------  !>
@@ -113,17 +129,10 @@
                     <button id="menu-btn">
                         <span class= "material-icons-sharp">menu</span>
                     </button>
-                    <div class="theme-toggler">
-                        <span class= "material-icons-sharp active">light_mode</span>
-                        <span class= "material-icons-sharp">dark_mode</span>
-                    </div>
                     <div class="profile">
                         <div class="info">
                             <p>Hey, <b>Daniel</b></p>
                             <small class="text-muted">Admin</small>
-                        </div>
-                        <div class="profile-photo">
-                            <img src="assets/profile-1.jpg">
                         </div>
                     </div>
 

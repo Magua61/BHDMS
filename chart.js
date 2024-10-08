@@ -76,6 +76,64 @@ function drawCharts() {
   //barChart.draw(barZeroData, barOptions);
   barChart.draw(barData, barOptions);
   
+  var mentalHealthBarData = google.visualization.arrayToDataTable([
+    ['Day', 'Depression', 'ADHD', 'Anxiety'],
+    ['0-10',  12,      643, 21],
+    ['11-20',  130,      323, 780],
+    ['21-30',  760,       400, 921],
+    ['31-40',  1120,      540, 657],
+    ['41-50',  1230,      790, 450],
+    ['51-60',  1170,      960, 321],
+    ['61+',  1290,       3000, 532]
+  ]);
+  // set bar chart options
+  var mentalHealthbarOptions = {
+    focusTarget: 'category',
+    backgroundColor: 'transparent',
+    colors: ['cornflowerblue', 'tomato', 'yellow'],
+    fontName: 'Open Sans',
+    chartArea: {
+      left: 50,
+      top: 10,
+      width: '100%',
+      height: '70%'
+    },
+    bar: {
+      groupWidth: '80%'
+    },
+    hAxis: {
+      textStyle: {
+        fontSize: 11
+      }
+    },
+    vAxis: {
+      minValue: 0,
+      maxValue: 1500,
+      baselineColor: '#DDD',
+      gridlines: {
+        color: '#DDD',
+        count: 4
+      },
+      textStyle: {
+        fontSize: 11
+      }
+    },
+    legend: {
+      position: 'bottom',
+      textStyle: {
+        fontSize: 12
+      }
+    },
+    animation: {
+      duration: 1200,
+      easing: 'out',
+			startup: true
+    }
+  };
+  // draw bar chart twice so it animates
+  var mentalHealthbarChart = new google.visualization.ColumnChart(document.getElementById('mental-bar-chart'));
+  //barChart.draw(barZeroData, barOptions);
+  mentalHealthbarChart.draw(mentalHealthBarData, mentalHealthbarOptions);
   
   function randomNumber(base, step) {
     return Math.floor((Math.random()*step)+base);
@@ -194,3 +252,4 @@ function drawCharts() {
   var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
   pieChart.draw(pieData, pieOptions);
 }
+
