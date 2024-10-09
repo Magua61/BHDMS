@@ -36,22 +36,67 @@ function editPersonalDetails() {
     toggleEditMode('family', 'edit-family');
 }
 
+// function savePersonalDetails() {
+//     document.getElementById('edit-personal').style.display = 'inline';
+//     document.getElementById('save-personal').style.display = 'none';
+
+//     // Save values and switch back to view mode
+//     toggleSaveMode('person-name', 'edit-name');
+//     toggleSaveMode('person-age', 'edit-age');
+//     toggleSaveMode('birthday', 'edit-birthday');
+//     toggleSaveMode('address', 'edit-address');
+//     toggleSaveMode('phone-number', 'edit-phone');
+//     toggleSaveMode('email', 'edit-email');
+//     toggleSaveMode('occupation', 'edit-occupation');
+//     toggleSaveMode('ethnicity', 'edit-ethnicity');
+//     toggleSaveMode('family', 'edit-family');
+// }
 function savePersonalDetails() {
-    document.getElementById('edit-personal').style.display = 'inline';
-    document.getElementById('save-personal').style.display = 'none';
+    // Get the values from the input fields
+    let name = document.getElementById('edit-name').value;
+    let age = document.getElementById('edit-age').value;
+    let birthday = document.getElementById('edit-birthday').value;
+    let address = document.getElementById('edit-address').value;
+    let phone = document.getElementById('edit-phone').value;
+    let email = document.getElementById('edit-email').value;
+    let occupation = document.getElementById('edit-occupation').value;
+    let ethnicity = document.getElementById('edit-ethnicity').value;
 
-    // Save values and switch back to view mode
-    toggleSaveMode('person-name', 'edit-name');
-    toggleSaveMode('person-age', 'edit-age');
-    toggleSaveMode('birthday', 'edit-birthday');
-    toggleSaveMode('address', 'edit-address');
-    toggleSaveMode('phone-number', 'edit-phone');
-    toggleSaveMode('email', 'edit-email');
-    toggleSaveMode('occupation', 'edit-occupation');
-    toggleSaveMode('ethnicity', 'edit-ethnicity');
-    toggleSaveMode('family', 'edit-family');
+    // Send the data via AJAX to update the database
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_profile.php", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            alert("Profile updated successfully!");
+            
+            // Update the displayed values
+            document.getElementById('person-name').innerText = name;
+            document.getElementById('person-age').innerText = age;
+            document.getElementById('birthday').innerText = birthday;
+            document.getElementById('address').innerText = address;
+            document.getElementById('phone-number').innerText = phone;
+            document.getElementById('email').innerText = email;
+            document.getElementById('occupation').innerText = occupation;
+            document.getElementById('ethnicity').innerText = ethnicity;
+            
+            // Switch back to display mode
+            document.querySelectorAll('.edit-field').forEach(field => field.style.display = 'none');
+            document.querySelectorAll('.personal-details-card h3 span').forEach(span => span.style.display = 'inline');
+            
+            // Switch the buttons back
+            document.getElementById('edit-personal').style.display = 'inline';
+            document.getElementById('save-personal').style.display = 'none';
+        }
+    };
+
+    xhr.send(
+        "name=" + name + "&age=" + age + "&birthday=" + birthday +
+        "&address=" + address + "&phone=" + phone + "&email=" + email +
+        "&occupation=" + occupation + "&ethnicity=" + ethnicity 
+    );
 }
-
 function editMedicalDetails() {
     document.getElementById('edit-medical-details').style.display = 'none'; // Correct ID
     document.getElementById('save-medical-details').style.display = 'inline';
@@ -124,15 +169,6 @@ function saveCurrentHealthStatus() {
     toggleSaveMode('relevant-info', 'edit-relevant-info');
     toggleSaveModeMany('person-medications', 'edit-medications', 'edit-medications-btn');
 }
-// fill table
-/* Updates.forEach(update =>{
-    const tr = document.createElement('tr');
-    const trContent = ' <td>${update.Name}</td><td>${update.Address}</td><td>${update.Age}</td><td>${update.Sex}</td><td>${update.Room}</td><td class="${update.Status === 'Evacuated' ? 'success' : update.Status === 'Departed' ? 'danger' : 'primary'}">${update.Status}</td>';
-
-    tr.innerHTML = trContent;
-    document.querySelector('table tbody').appendChild(tr);
-}) */
-
     var body = document.getElementsByTagName('body')[0];
 
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
@@ -177,67 +213,6 @@ function closeModal(modal) {
     overlay.classList.remove('active');
 }
 
-// Function to add a medical condition to the table
-function addCondition() {
-    const input = document.getElementById('medical-condition-input');
-    const condition = input.value.trim();
-
-    if (condition !== '') {
-        const tableBody = document.getElementById('condition-list');
-
-        // Create a new row for the condition
-        const newRow = document.createElement('tr');
-
-        // Create the first column for the condition
-        const conditionCell = document.createElement('td');
-        conditionCell.innerText = condition;
-
-        // Create the second column for the delete button
-        const actionCell = document.createElement('td');
-        const deleteButton = document.createElement('button');
-        deleteButton.innerText = 'Delete';
-        deleteButton.classList.add('delete-btn');
-        deleteButton.onclick = function () {
-            tableBody.removeChild(newRow);
-        };
-
-        actionCell.appendChild(deleteButton);
-
-        // Append the cells to the new row
-        newRow.appendChild(conditionCell);
-        newRow.appendChild(actionCell);
-
-        // Append the new row to the table body
-        tableBody.appendChild(newRow);
-
-        // Clear the input field for the next condition
-        input.value = '';
-    } else {
-        alert("Please enter a medical condition.");
-    }
-}
-
-// Save function to store the conditions and close the modal
-function saveMedicalConditions() {
-    const conditions = [];
-    const rows = document.querySelectorAll('#condition-list tr');
-    console.log("condition saved");
-
-    // Collect all conditions from the table
-    rows.forEach(row => {
-        const condition = row.cells[0].innerText;
-        conditions.push(condition);
-    });
-
-    // Update the main field with the list of conditions
-    document.getElementById('person-medical-conditions').value = conditions.join(', ');
-    document.getElementById('edit-medical-conditions').innerText = conditions.join(', ');
-    console.log(conditions.join(', '));
-
-    // Close the modal after saving
-    const modal = document.getElementById('modal-medical-condition'); // Reference your modal directly
-    closeModal(modal);
-}
 
 function addCondition() {
     const input = document.getElementById('medical-condition-input');
@@ -282,7 +257,6 @@ function addCondition() {
 function saveMedicalConditions() {
     const conditions = [];
     const rows = document.querySelectorAll('#condition-list tr');
-    console.log("condition saved");
 
     // Collect all conditions from the table
     rows.forEach(row => {
@@ -291,13 +265,18 @@ function saveMedicalConditions() {
     });
 
     // Update the main field with the list of conditions
-    document.getElementById('person-medical-conditions').value = conditions.join(', ');
+    document.getElementById('person-medical-conditions').innerText = conditions.join(', ');
     document.getElementById('edit-medical-conditions').innerText = conditions.join(', ');
-    console.log(conditions.join(', '));
+
+    // Optionally: Send an AJAX request to update the database with the new conditions
 
     // Close the modal after saving
-    const modal = document.getElementById('modal-medical-condition'); // Reference your modal directly
+    const modal = document.getElementById('modal-medical-condition');
     closeModal(modal);
+}
+function removeCondition(button) {
+    const row = button.parentNode.parentNode;
+    row.remove();
 }
 
 function addCurrentCondition() {

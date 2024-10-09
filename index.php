@@ -6,12 +6,24 @@ $conn = new mysqli("localhost", "root", "", "abhds");
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
+// Prepare SQL queries to count users and families
+$user_result = $conn->query("SELECT COUNT(*) AS total_users FROM user");
+$family_result = $conn->query("SELECT COUNT(*) AS total_families FROM family");
+if ($user_result) {
+    $row = $user_result->fetch_assoc();
+    $totalUsers = $row['total_users'];
+} else {
+    echo "Error: " . $conn->error;
+}
 
-// Fetch the evacuee's data
-$evacuee_id = 1; // Example ID, change as needed
-$sql = "SELECT * FROM evacuees WHERE id = $evacuee_id";
-$result = $conn->query($sql);
-$evacuee = $result->fetch_assoc();
+if ($family_result) {
+    $row = $family_result->fetch_assoc();
+    $totalFamilies = $row['total_families'];
+} else {
+    echo "Error: " . $conn->error;
+}
+
+$conn->close();
 ?>
 
 <!DOCTYPE html>
@@ -19,7 +31,7 @@ $evacuee = $result->fetch_assoc();
     <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp"
       rel="stylesheet">
    <link rel="stylesheet" href="style.css">
-   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
    </head>
 <body>
 
@@ -40,7 +52,7 @@ $evacuee = $result->fetch_assoc();
                         <span class="material-icons-sharp">grid_view</span>
                         <h3>Dashboard</h3>
                     </a>
-                    <a href="evacuees.html" class="btn-evacuees">
+                    <a href="profile.php" class="btn-evacuees">
                         <span class="material-icons-sharp">medical_information</span>
                         <h3>Health Profile</h3>
                     </a>
@@ -66,45 +78,47 @@ $evacuee = $result->fetch_assoc();
                     <div class="cap">
                         <span class= "material-icons-sharp">vaccines</span>
                         <div class="combo-box">
-                            <select name="vaccines" id="vaccines">
-                                <option value="measles">Measles</option>
-                              <option value="covid">Covid-19</option>
-                              <option value="rabies">Rabies</option>
-                              <option value="tetanus">Tetanus</option>
+                            <select name="vaccines" id="vaccine-select" onchange="updatePieChart()">
+                                <option value="Measles">Measles</option>
+                                <option value="Covid-19">Covid-19</option>
+                                <option value="Rabies">Rabies</option>
+                                <option value="Tetanus">Tetanus</option>
                             </select>
                         </div>
                         <div class="middle">
                             <div class="left">
-                                 <h3>Vaccination Rate</h3>
-                                <h1>Total Population: 854</h1>
+                                 <h3>Vaccination Statistics</h3>
                             </div>
                         </div>
+
+                        <!-- Pie chart container -->
                         <div id="pie-chart"></div>
+
                     </div>
                     <!====================== EVACUEES ====================!>
 
                     <div class="evacuees">
-                        <span class= "material-icons-sharp">trending_up</span>
-                        <div class="combo-box">
-                            <select name="year" id="year">
-                                <option value="2024">2024</option>
-                              <option value="2023">2023</option>
-                              <option value="2022">2022</option>
-                              <option value="2021">2021</option>
-                            </select>
+                    <span class="material-icons-sharp">trending_up</span>
+                    <div class="combo-box">
+                        <select name="habits" id="habits-sort">
+                            <option value="age">Age</option>
+                            <option value="income">Income</option>
+                            <option value="ethnicity">Ethnicity</option>
+                            <option value="education">Education</option>
+                        </select>
+                    </div>
+                    <div class="middle">
+                        <div class="left">
+                            <h3>Health Habits Overview</h3>
                         </div>
-                        <div class="middle">
-                            <div class="left">
-                                 <h3>Disease Prevalence Trend</h3>
-                            </div>
-                        </div>
-                        <div id="line-chart"></div>
+                    </div>
+                    <div id="habits-bar-chart" ></div>
                     </div>
                     <!====================== RELIEF ====================!>
                     <div class="inventory">
                         <span class= "material-icons-sharp">coronavirus</span>
                         <div class="combo-box">
-                            <select name="disease-sort" id="disease-sort">
+                            <select name="disease" id="disease-sort">
                                 <option value="age">Age</option>
                               <option value="income">Income</option>
                               <option value="ethnicity">Ethnicity</option>
@@ -116,13 +130,13 @@ $evacuee = $result->fetch_assoc();
                                  <h3>Most Common Disease</h3>
                             </div>
                         </div>
-                        <div id="bar-chart"></div>
+                        <div id="disease-bar-chart"></div>
                     </div>
                     <!====================== CAPACITY ====================!>
                     <div class="mental">
                         <span class= "material-icons-sharp">psychology</span>
                         <div class="combo-box">
-                            <select name="disease-sort" id="disease-sort">
+                            <select name="mental" id="mental-sort">
                                 <option value="age">Age</option>
                               <option value="income">Income</option>
                               <option value="ethnicity">Ethnicity</option>
@@ -155,9 +169,9 @@ $evacuee = $result->fetch_assoc();
                 </div>
                 <! ---------------- End of Top ---------------- !>
 
-                    <div class="evac-analytics">
+                    <div class="health-warning">
                         <h2>Analytics</h2>
-                        <div class="evacuee analysis">
+                        <div class="hereditary warning">
                             <div class="icon">
                                 <span class= "material-icons-sharp">groups</span>
                             </div>
@@ -166,12 +180,11 @@ $evacuee = $result->fetch_assoc();
                                     <h3>Residents</h3>
                                     <small class="text-muted">Last 24 Hours</small>
                                 </div>
-                                <h5 class="success">+26%</h5>
-                                <h3>854</h3>
+                                <h3><?php echo $totalUsers?></h3>
                             </div>
                         </div>
 
-                        <div class="volunteer analysis">
+                        <div class="habits warning">
                             <div class="icon">
                                 <span class="material-icons-sharp">diversity_3</span>
                             </div>
@@ -180,8 +193,7 @@ $evacuee = $result->fetch_assoc();
                                     <h3>Families</h3>
                                     <small class="text-muted">Last 24 Hours</small>
                                 </div>
-                                <h5 class="danger">-15%</h5>
-                                <h3>23</h3>
+                                <h3><?php echo $totalFamilies?></h3>
                             </div>
                         </div>
 
@@ -190,7 +202,7 @@ $evacuee = $result->fetch_assoc();
 
             </div>
         </div>
-
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
         <script src="chart.js"></script>
         <script src="default.js"></script>
 </body>

@@ -219,37 +219,267 @@ function drawCharts() {
   //lineChart.draw(zeroLineData, lineOptions);
   lineChart.draw(lineData, lineOptions);
   
-  // BEGIN PIE CHART
-  
-  // pie chart data
-  var pieData = google.visualization.arrayToDataTable([
-    ['Country', 'Page Hits'],
-    ['Vaccinated',      7242],
-    ['Unvaccinated',   4563],
-  ]);
-  // pie chart options
-  var pieOptions = {
-    backgroundColor: 'transparent',
-    pieHole: 0.4,
-    colors: [ "cornflowerblue", 
-              "crimson", ],
-    pieSliceText: 'value',
-    tooltip: {
-      text: 'percentage'
-    },
-    fontName: 'Open Sans',
-    chartArea: {
-      width: '100%',
-      height: '94%'
-    },
-    legend: {
-      textStyle: {
-        fontSize: 13
-      }
-    }
-  };
-  // draw pie chart
-  var pieChart = new google.visualization.PieChart(document.getElementById('pie-chart'));
-  pieChart.draw(pieData, pieOptions);
+
 }
 
+function drawChart(vaccinated, unvaccinated) {
+  var data = google.visualization.arrayToDataTable([
+      ['Status', 'Number of People'],
+      ['Vaccinated', vaccinated],
+      ['Unvaccinated', unvaccinated],
+  ]);
+
+  var options = {
+      backgroundColor: 'transparent',
+      pieHole: 0.4,
+      colors: ['cornflowerblue', 'crimson'],
+      pieSliceText: 'value',
+      tooltip: { text: 'percentage' },
+      fontName: 'Open Sans',
+      chartArea: { width: '100%', height: '94%' },
+      legend: { textStyle: { fontSize: 13 } },
+  };
+
+  var chart = new google.visualization.PieChart(document.getElementById('pie-chart'));
+  chart.draw(data, options);
+}
+
+// Function to update the pie chart based on the selected vaccine
+function updatePieChart() {
+  const vaccine = document.getElementById('vaccine-select').value;
+
+  // Fetch the vaccination data from the server
+  fetch('get_vaccination_data.php')
+      .then(response => response.json())
+      .then(data => {
+          // Handle case where the selected vaccine is not found in the data
+          if (data[vaccine]) {
+              const vaccinated = data[vaccine].vaccinated;
+              const unvaccinated = data[vaccine].unvaccinated;
+              drawChart(vaccinated, unvaccinated);
+          } else {
+              // Handle the case where vaccine data is missing or invalid
+              console.warn(`No data found for vaccine: ${vaccine}`);
+              drawChart(0, 0); // Default to empty chart if data not found
+          }
+      })
+      .catch(error => console.error('Error fetching vaccination data:', error));
+}
+
+// Load the initial chart when the page loads
+google.charts.setOnLoadCallback(updatePieChart);
+
+
+// Function to fetch user habits based on the selected sorting criteria
+function fetchUserHabits(sortBy) {
+  const url = `get_habits_by_${sortBy}.php`; // Dynamically set the URL based on sortBy
+  fetch(url)
+      .then(response => response.json())
+      .then(data => {
+          drawHabitsBarChart(data, sortBy); // Pass the sortBy parameter
+      })
+      .catch(error => {
+          console.error('Error fetching habits data:', error);
+      });
+}
+
+// Event listener for sorting
+document.getElementById('habits-sort').addEventListener('change', function() {
+  const sortBy = this.value; // Get the selected sorting option
+  fetchUserHabits(sortBy); // Fetch data based on the selected criteria
+});
+
+// Function to draw the habits bar chart
+function drawHabitsBarChart(data, sortBy) {
+  const barData = [[sortBy === 'age' ? 'Age Group' : sortBy === 'ethnicity' ? 'Ethnicity' : sortBy === 'income' ? 'Income Group' : 'Education Level', 'Smokers', 'Drinkers', 'Drug Users']];
+  
+  for (const [key, counts] of Object.entries(data)) {
+      barData.push([key, counts.smokers, counts.drinkers, counts.drug_users]);
+  }
+
+  const dataTable = google.visualization.arrayToDataTable(barData);
+
+  const barOptions = {
+      backgroundColor: 'transparent',
+      colors: ['cornflowerblue', 'tomato', 'yellow'],
+      hAxis: {
+          title: sortBy === 'age' ? 'Age Group' : sortBy === 'ethnicity' ? 'Ethnicity' : sortBy === 'income' ? 'Income Group' : 'Education Level',
+          minValue: 0,
+      },
+      vAxis: {
+          title: 'Count',
+          minValue: 0,
+      },
+      legend: { position: 'bottom' },
+  };
+
+  const barChart = new google.visualization.ColumnChart(document.getElementById('habits-bar-chart'));
+  barChart.draw(dataTable, barOptions);
+}
+
+// Function to fetch user disease based on the selected sorting criteria
+function fetchUserDisease(sortBy) {
+  const url = `get_disease_by_${sortBy}.php`; // Dynamically set the URL based on sortBy
+  fetch(url)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          drawDiseaseBarChart(data, sortBy); // Pass the sortBy parameter
+      })
+      .catch(error => {
+          console.error('Error fetching disease data:', error);
+      });
+}
+
+// Event listener for sorting
+document.getElementById('disease-sort').addEventListener('change', function() {
+  const sortBy = this.value; // Get the selected sorting option
+  fetchUserDisease(sortBy); // Fetch data based on the selected criteria
+});
+
+// Function to draw the disease bar chart
+function drawDiseaseBarChart(data, sortBy) {
+  const barData = [];
+  const diseaseNames = new Set();
+  for (const counts of Object.values(data)) {
+    Object.keys(counts).forEach(disease => diseaseNames.add(disease));
+  }
+
+  // Convert the Set to an array for easier indexing
+  const diseaseArray = Array.from(diseaseNames);
+
+  // Step 2: Define the column headers based on the sortBy parameter
+  const header = [
+    sortBy === 'age' ? 'Age Group' :
+    sortBy === 'ethnicity' ? 'Ethnicity' :
+    sortBy === 'income' ? 'Income Group' : 
+    'Education Level',
+    ...diseaseArray // Add the dynamic disease names to the header
+  ];
+  barData.push(header);
+  // Loop through the data to fill the barData array
+  for (const [key, counts] of Object.entries(data)) {
+    // Create a row starting with the key (e.g., age group)
+    const row = [key];
+
+    // Add the counts for each disease (or 0 if the disease is missing)
+    diseaseArray.forEach(disease => {
+      row.push(counts[disease] || 0); // Use 0 if the disease count is missing
+    });
+
+    barData.push(row); // Add the row to barData
+  }
+
+  const dataTable = google.visualization.arrayToDataTable(barData);
+
+  const barOptions = {
+      backgroundColor: 'transparent',
+      colors: ['cornflowerblue', 'tomato', 'yellow', 'green', 'purple','pink'],
+
+      hAxis: {
+          title: 'Disease',
+          minValue: 0,
+      },
+      vAxis: {
+          title: 'Count',
+          minValue: 0,
+      },
+      legend: { position: 'bottom' },
+  };
+
+  // Draw the chart
+  const barChart = new google.visualization.ColumnChart(document.getElementById('disease-bar-chart'));
+  barChart.draw(dataTable, barOptions);
+}
+
+// Function to fetch user disease based on the selected sorting criteria
+function fetchUserMental(sortBy) {
+  const url = `get_mental_by_${sortBy}.php`; // Dynamically set the URL based on sortBy
+  fetch(url)
+      .then(response => {
+          if (!response.ok) {
+              throw new Error('Network response was not ok');
+          }
+          return response.json();
+      })
+      .then(data => {
+          drawMentalBarChart(data, sortBy); // Pass the sortBy parameter
+      })
+      .catch(error => {
+          console.error('Error fetching mental data:', error);
+      });
+}
+
+// Event listener for sorting
+document.getElementById('mental-sort').addEventListener('change', function() {
+  const sortBy = this.value; // Get the selected sorting option
+  fetchUserMental(sortBy); // Fetch data based on the selected criteria
+});
+
+// Function to draw the disease bar chart
+function drawMentalBarChart(data, sortBy) {
+  const barData =[];
+  const mentalNames = new Set();
+  for (const counts of Object.values(data)) {
+    Object.keys(counts).forEach(mental => mentalNames.add(mental));
+  }
+
+  // Convert the Set to an array for easier indexing
+  const mentalArray = Array.from(mentalNames);
+
+  // Step 2: Define the column headers based on the sortBy parameter
+  const header = [
+    sortBy === 'age' ? 'Age Group' :
+    sortBy === 'ethnicity' ? 'Ethnicity' :
+    sortBy === 'income' ? 'Income Group' : 
+    'Education Level',
+    ...mentalArray // Add the dynamic disease names to the header
+  ];
+  barData.push(header);
+  // Loop through the data to fill the barData array
+  for (const [key, counts] of Object.entries(data)) {
+    // Create a row starting with the key (e.g., age group)
+    const row = [key];
+
+    // Add the counts for each disease (or 0 if the disease is missing)
+    mentalArray.forEach(mental => {
+      row.push(counts[mental] || 0); // Use 0 if the disease count is missing
+    });
+
+    barData.push(row); // Add the row to barData
+  }
+
+  const dataTable = google.visualization.arrayToDataTable(barData);
+
+  const barOptions = {
+      backgroundColor: 'transparent',
+      colors: ['cornflowerblue', 'tomato', 'yellow','green','purple','pink'],
+      hAxis: {
+          title: 'Mental Illness',
+          minValue: 0,
+      },
+      vAxis: {
+          title: 'Count',
+          minValue: 0,
+      },
+      legend: { position: 'bottom' },
+  };
+
+  // Draw the chart
+  const barChart = new google.visualization.ColumnChart(document.getElementById('mental-bar-chart'));
+  barChart.draw(dataTable, barOptions);
+}
+// Function to initialize the chart on page load
+function initChart() {
+  fetchUserHabits('age'); // Default to age
+  fetchUserDisease('age');
+  fetchUserMental('age');
+}
+
+// Load the chart when the Google Charts library is loaded
+google.charts.load('current', { packages: ['corechart'] });
+google.charts.setOnLoadCallback(initChart); // Set the default chart to be age groups

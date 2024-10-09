@@ -323,13 +323,19 @@ main .text-box {
     position: relative;
     overflow: visible;
   }
+#mental-bar-chart {
+    width: 500px;
+    height: 200px;
+    position: relative;
+    overflow: visible;
+  }
 #line-chart {
     width: 500px;
     height: 200px;
     position: relative;
     overflow: visible;
   }
-#bar-chart::before, #line-chart::before {
+#bar-chart::before, #mental-bar-chart::before, #line-chart::before {
     content: "";
     position: absolute;
     display: block;
@@ -559,15 +565,15 @@ main .recent-updates a{
 }
 /*  ======================== Analytics =======================*/
 
-.right .evac-analytics{
+.right .health-warning{
     margin-top: 2rem;
 }
 
-.right .evac-analytics h2{
+.right .health-warning h2{
     margin-bottom:0.8rem;
 }
 
-.right .evac-analytics .analysis{
+.right .health-warning .warning{
     background: var(--color-white);
     display: flex;
     align-items: center;
@@ -579,11 +585,11 @@ main .recent-updates a{
     transition: all 300ms ease;
 }
 
-.right .evac-analytics .analysis:hover{
+.right .health-warning .warning:hover{
     box-shadow:none;
 }
 
-.right .evac-analytics .analysis .right{
+.right .health-warning .warning .right{
     display:flex;
     justify-content: space-between;
     align-items: start;
@@ -591,7 +597,7 @@ main .recent-updates a{
     width:100%;
 }
 
-.right .evac-analytics .analysis .icon{
+.right .health-warning .warning .icon{
     padding: 0.6rem;
     color: var(--color-white);
     border-radius: 50%;
@@ -599,11 +605,11 @@ main .recent-updates a{
     display:flex;
 }
 
-.right .evac-analytics .analysis.volunteer .icon{
+.right .health-warning .warning.hereditary .icon{
     background: var(--color-success);
 }
 
-.right .evac-analytics .analysis.evacuee .icon{
+.right .health-warning .warning.habits .icon{
     background: var(--color-danger);
 }
 
